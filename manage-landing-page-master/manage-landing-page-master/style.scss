@@ -1,0 +1,225 @@
+
+/*font size (body)*/
+$body-fontSize:16px;
+
+/*Colors */
+$Bright_Red: hsl(12, 88%, 59%);
+$Dark_Blue: hsl(228, 39%, 23%);
+
+$Dark_Grayish_Blue: hsl(227, 12%, 61%);
+$Very_Dark_Blue: hsl(233, 12%, 13%);
+$Very_Pale_Red: hsl(13, 100%, 96%);
+$Vary_Light_Gray: hsl(0, 0%, 98%);
+
+
+/**********Mixing***********/
+
+@mixin center_flex {
+    display: flex;
+    align-items: center;
+}
+
+@mixin btn_property($padding,$border_radius,$color,$bg_color,$width,$height,$contrast,$size_word) {
+    padding:$padding;
+    border-radius: $border_radius;
+    @include center_flex;
+    justify-content: center;
+    color:$color;
+    background-color: $bg_color;
+    filter: contrast($contrast) brightness($contrast);
+    width:$width;
+    height:$height;
+    font-size: $size_word;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family:Be Vietnam Pro ;
+}
+
+@mixin link_property($pad,$color,$weight,$size,$fontF) {
+    padding:$pad;
+    list-style:none;
+    color:$color;
+    font-weight:$weight;
+    font-size:$size;
+    font-family:$fontF;
+    cursor: pointer;
+}
+
+*,::before,::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: $body-fontSize;
+}
+
+header
+{
+    height:100vh;
+    width:100vw;
+    nav{
+        position: relative;
+        width:100%;
+        height:9vh;
+        background-color: gray;
+        padding:20px;
+        @include center_flex;
+        justify-content: space-around;
+
+        img{
+            width:100px;
+            height:20px;
+        }
+
+        .navigation{
+            @include center_flex;
+            justify-content: space-around;
+        }
+
+        .items{
+            @include link_property(10px,$Dark_Blue,500,1rem,Be Vietnam Pro);
+        }
+
+        .btns button{
+            @include btn_property(10px,9999px,$Very_Pale_Red,$Bright_Red,120px,40px,92.5%,1rem);
+        }
+
+        .burger{
+            width:35px;
+            height:30px;
+            transition:all 0.6s ease-out;
+            display: none;
+            cursor: pointer;
+
+            .bars{
+                width:100%;
+                height:5px;
+                margin-top: 5px;
+                background-color: $Dark_Blue;
+                border-radius: 3px;
+            }
+        }
+
+    }
+
+
+    .header_cont{
+        @include center_flex;
+        align-items:initial;
+
+        .container{
+            @include center_flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .text_one{
+                @include center_flex;
+                flex-direction: column;
+                justify-content: center;
+                padding:10px;
+
+                span{
+                    display: block;
+                    font-size: 50px;
+                    padding-right:20px;
+                    position: relative;
+                    right:20px;
+                }
+            }
+
+            .text_two{
+                @include center_flex;
+                flex-direction: column;
+                p{
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .imgs{
+            @include center_flex;
+            position: relative;
+
+            .arrow{
+                position: relative;
+                top:-25%;
+                z-index: -1;
+                left:25%;
+
+            }
+
+            .stat{
+                position: absolute;
+                right:20%;
+                img{
+                    width:500px;
+                    height:500px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@media screen and (max-width:710px){
+    header{
+        nav{
+            .navigation{
+                position: absolute;
+                top:10vh;
+                height:50vh;
+                flex-direction: column;
+                justify-content: space-around;
+                transition: transform 0.7s ease,opacity 0.9s ease-out;
+                transform: translateY(-250%);
+                border: none;
+                border-radius: 5px;
+                box-shadow: 1px 1px 3px rgba(0,0,0,0.2),
+                -1px -1px 3px rgba(0,0,0,0.2);
+                opacity: 0;                            ;
+                padding: 25%;
+                background-color: #fff;
+        
+                .items{
+                    font-size:1.3rem;
+                }
+            }
+
+            .active_ul{
+                transform: translateY(0%);
+                opacity: 1;     
+            }
+    
+            .btns{
+               display: none;
+            }
+
+            .burger{
+                display: block;
+            }
+
+           .actived{    
+               .bar1{
+                    transform: translateY(10px) rotate(45deg);
+                }
+        
+                .bar2{
+                    transform: translateX(-100px);
+                    opacity: 0;
+                }
+        
+                .bar3{
+                    transform: translateY(-10px) rotate(-45deg);
+                }
+           }
+    
+        }
+    }
+
+}
